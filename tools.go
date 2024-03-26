@@ -14,6 +14,7 @@ import (
 	"path"
 	"path/filepath"
 	"regexp"
+	"strconv"
 	"strings"
 )
 
@@ -447,4 +448,10 @@ func (t *Tools) ErrorXML(w http.ResponseWriter, err error, status ...int) error 
 	payload.Message = err.Error()
 
 	return t.WriteXML(w, statusCode, payload)
+}
+
+// Convert tools
+func (t *Tools) ConvFloatString(v string) float64 {
+	f, _ := strconv.ParseFloat(v, 64)
+	return f
 }
